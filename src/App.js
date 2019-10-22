@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import blogService from './services/blogs'
 import Notification from './components/Notification'
 import Blogs from './components/Blogs'
+import loginService from './services/login' 
+import LoginForm from './components/LoginForm'
 
 
 function App() {
@@ -9,6 +11,7 @@ function App() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState(null)
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     blogService
@@ -17,46 +20,54 @@ function App() {
       })
   }, [])
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault()
-    console.log('logging in with', username, password)
+    try {
+      const user = await loginService.login({
+        username, password,
+      })
+
+      setUser(user)
+      setUsername('')
+      setPassword('')
+    } catch (exception) {
+      setErrorMessage('wrong credentials')
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
+    }
+  }
+  
+  // Conditional rendering
+  if (user === null) {
+    return (
+      <div>
+        <Notification message={errorMessage} />
+
+        <h2>Log in to application</h2>
+
+        <LoginForm  handleLogin={handleLogin}
+                    username={username}
+                    password={password}
+                    setUsername={setUsername}
+                    setPassword={setPassword} 
+        />
+      </div>
+    )
   }
 
   return (
     <div>
-      <h1>Notes</h1>
-
-      <Notification message={errorMessage} />
-
-      <h2>Login</h2>
-
-      <form onSubmit={handleLogin}>
-        <div>
-          username
-            <input
-              type="text"
-              value={username}
-              name="Username"
-              onChange={({ target }) => setUsername(target.value)}
-            />
-        </div>
-        <div>
-          password
-            <input
-              type="password"
-              value={password}
-              name="Password"
-              onChange={({ target }) => setPassword(target.value)}
-            />
-        </div>
-        <button type="submit">login</button>
-      </form>
+      <h2>Blogs</h2>
+      <p>{user.name} logged in</p>
 
       <Blogs  blogs={blogs}
       />
 
     </div>
   )
+
+
 }
 
 export default App;
