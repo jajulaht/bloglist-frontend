@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react'
-import blogService from './services/blogs'
-import Notification from './components/Notification'
-import ErrorMessage from './components/ErrorMessage'
-import Blogs from './components/Blogs'
-import loginService from './services/login' 
-import LoginForm from './components/LoginForm'
-import BlogForm from './components/BlogForm'
+import React, { useState, useEffect } from 'react' // eslint-disable-line no-unused-vars
+import blogService from './services/blogs' // eslint-disable-line no-unused-vars
+import Notification from './components/Notification' // eslint-disable-line no-unused-vars
+import ErrorMessage from './components/ErrorMessage' // eslint-disable-line no-unused-vars
+import Blogs from './components/Blogs' // eslint-disable-line no-unused-vars
+import loginService from './services/login' // eslint-disable-line no-unused-vars
+import LoginForm from './components/LoginForm' // eslint-disable-line no-unused-vars
+import BlogForm from './components/BlogForm' // eslint-disable-line no-unused-vars
 
 
 function App() {
-  const [blogs, setBlogs] = useState([]) 
+  const [blogs, setBlogs] = useState([])
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState(null)
@@ -35,6 +35,7 @@ function App() {
 
   // Check if log info saved in local storage
   useEffect(() => {
+    // eslint-disable-next-line no-undef
     const loggedUserJSON = window.localStorage.getItem('loggedBlogappUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
@@ -59,13 +60,16 @@ function App() {
       setUsername('')
       setPassword('')
     } catch (exception) {
-      setErrorMessage('wrong credentials')
+      setErrorMessage('Wrong username or password')
+      setUsername('')
+      setPassword('')
       setTimeout(() => {
         setErrorMessage(null)
       }, 5000)
     }
   }
 
+  // eslint-disable-next-line no-unused-vars
   const handleLogout = async (event) => {
     window.localStorage.removeItem('loggedBlogappUser')
     setUser(null)
@@ -80,46 +84,52 @@ function App() {
       url: newUrl
     }
     blogService
-    .create(blogObject)
+      .create(blogObject)
       .then(returnedBlog => {
-      setBlogs(blogs.concat(returnedBlog))
-      setNewTitle('')
-      setNewAuthor('')
-      setNewUrl('')
-      setMessage(
-        `'${returnedBlog.title}' was added`
+        setBlogs(blogs.concat(returnedBlog))
+        setNewTitle('')
+        setNewAuthor('')
+        setNewUrl('')
+        setMessage(
+          `'${returnedBlog.title}' was added`
         )
-      setTimeout(() => {
-        setMessage(null)
-      }, 5000)
-    })
-    .catch(error => {
-      // Server returns an error message
-      console.log(error.response.data)
-      setErrorMessage(
-        `${error.response.data.error}`
+        setTimeout(() => {
+          setMessage(null)
+        }, 5000)
+      })
+      .catch(error => {
+        // Server returns an error message
+        console.log(error.response.data)
+        setErrorMessage(
+          `${error.response.data.error}`
         )
-      setTimeout(() => {
-        console.log('Error: ', error)
-        setErrorMessage(null)
-      }, 5000)
-    })
+        setTimeout(() => {
+          console.log('Error: ', error)
+          setErrorMessage(null)
+        }, 5000)
+      })
   }
-  
+
   // Conditional rendering
   if (user === null) {
     return (
       <div>
-        <Notification message={message} />
-        <ErrorMessage errorMessage={errorMessage} />
 
         <h2>Log in to application</h2>
 
-        <LoginForm  handleLogin={handleLogin}
-                    username={username}
-                    password={password}
-                    setUsername={setUsername}
-                    setPassword={setPassword} 
+        <Notification
+          message={message}
+        />
+        <ErrorMessage
+          errorMessage={errorMessage}
+        />
+
+        <LoginForm
+          handleLogin={handleLogin}
+          username={username}
+          password={password}
+          setUsername={setUsername}
+          setPassword={setPassword}
         />
       </div>
     )
@@ -128,17 +138,25 @@ function App() {
   return (
     <div>
       <h2>Blogs</h2>
+      <Notification
+        message={message}
+      />
+      <ErrorMessage
+        errorMessage={errorMessage}
+      />
+
       <p>{user.name} logged in <button onClick={handleLogout}>Logout</button></p>
 
-      <BlogForm addBlog={addBlog}
-                newTitle={newTitle}
-                newAuthor={newAuthor}
-                newUrl={newUrl}
-                setNewTitle={setNewTitle}
-                setNewAuthor={setNewAuthor}
-                setNewUrl={setNewUrl}
+      <BlogForm
+        addBlog={addBlog}
+        newTitle={newTitle}
+        newAuthor={newAuthor}
+        newUrl={newUrl}
+        setNewTitle={setNewTitle}
+        setNewAuthor={setNewAuthor}
+        setNewUrl={setNewUrl}
       />
-      
+
       <Blogs    blogs={blogs}
       />
 
@@ -148,4 +166,4 @@ function App() {
 
 }
 
-export default App;
+export default App

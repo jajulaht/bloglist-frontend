@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react' // eslint-disable-line no-unused-vars
 
 const ErrorMessage = ({ errorMessage }) => {
   if (errorMessage === null) {
@@ -12,4 +12,4 @@ const ErrorMessage = ({ errorMessage }) => {
   )
 }
 
-export default ErrorMessage 
+export default ErrorMessage
