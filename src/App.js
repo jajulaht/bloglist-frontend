@@ -6,6 +6,7 @@ import Blogs from './components/Blogs' // eslint-disable-line no-unused-vars
 import loginService from './services/login' // eslint-disable-line no-unused-vars
 import LoginForm from './components/LoginForm' // eslint-disable-line no-unused-vars
 import BlogForm from './components/BlogForm' // eslint-disable-line no-unused-vars
+import Togglable from './components/Togglable' // eslint-disable-line no-unused-vars
 
 
 function App() {
@@ -147,15 +148,17 @@ function App() {
 
       <p>{user.name} logged in <button onClick={handleLogout}>Logout</button></p>
 
-      <BlogForm
-        addBlog={addBlog}
-        newTitle={newTitle}
-        newAuthor={newAuthor}
-        newUrl={newUrl}
-        setNewTitle={setNewTitle}
-        setNewAuthor={setNewAuthor}
-        setNewUrl={setNewUrl}
-      />
+      <Togglable buttonLabel="New blog note">
+        <BlogForm
+          addBlog={addBlog}
+          newTitle={newTitle}
+          newAuthor={newAuthor}
+          newUrl={newUrl}
+          setNewTitle={setNewTitle}
+          setNewAuthor={setNewAuthor}
+          setNewUrl={setNewUrl}
+        />
+      </Togglable>
 
       <Blogs    blogs={blogs}
       />
