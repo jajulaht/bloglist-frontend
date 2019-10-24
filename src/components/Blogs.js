@@ -7,6 +7,7 @@ const Blogs = ({ blogs }) => {
   }
   else {
     // Map blogs array data to rows
+    console.log('ööö', blogs)
     const rows = () => blogs.map(blog =>
       <React.Fragment key={blog.id}>
         <Blog
@@ -14,6 +15,7 @@ const Blogs = ({ blogs }) => {
           author={blog.author}
           url={blog.url}
           likes={blog.likes}
+          username={blog.user.name}
         /><br />
       </React.Fragment>
     )

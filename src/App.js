@@ -160,7 +160,8 @@ function App() {
         />
       </Togglable>
 
-      <Blogs    blogs={blogs}
+      <Blogs
+        blogs={blogs}
       />
 
     </div>
