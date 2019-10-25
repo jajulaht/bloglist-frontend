@@ -1,6 +1,6 @@
 import React, { useState } from 'react' // eslint-disable-line no-unused-vars
 
-const Blog = ({ title, author, url, likes, username }) => {
+const Blog = ({ title, author, url, likes, name, updateBlogLikes, id }) => {
   const [visible, setVisible] = useState(false)
 
   const blogTitleStyle = {
@@ -21,12 +21,13 @@ const Blog = ({ title, author, url, likes, username }) => {
     backgroundColor: '#f0f0f0',
     marginBottom: 0
   }
+
   return (
     <div>
       <div style={blogTitleStyle} onClick={() => setVisible(!visible)}>{title} {author}</div>
       <div style={blogStyle}>{url}<br />
-        {likes} likes <button>Like</button><br />
-        added by {username}
+        {likes} likes <button onClick={() => updateBlogLikes(id)}>Like</button><br />
+        added by {name}
       </div>
     </div>
   )

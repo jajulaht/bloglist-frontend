@@ -14,15 +14,15 @@ function App() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState(null)
-  const [message, setMessage ] = useState(null)
+  const [message, setMessage] = useState(null)
   const [user, setUser] = useState(null)
-  const [newTitle, setNewTitle ] = useState(
+  const [newTitle, setNewTitle] = useState(
     ''
   )
-  const [newAuthor, setNewAuthor ] = useState(
+  const [newAuthor, setNewAuthor] = useState(
     ''
   )
-  const [newUrl, setNewUrl ] = useState(
+  const [newUrl, setNewUrl] = useState(
     ''
   )
 
@@ -76,7 +76,7 @@ function App() {
     setUser(null)
   }
 
-  // Add a blog
+  // Add a blog, change response's user to match blogs state
   const addBlog = (event) => {
     event.preventDefault()
     const blogObject = {
@@ -87,7 +87,13 @@ function App() {
     blogService
       .create(blogObject)
       .then(returnedBlog => {
-        setBlogs(blogs.concat(returnedBlog))
+        const changedReturnedBlog = {
+          ...returnedBlog, user: {
+            id: returnedBlog.user,
+            username: user.username,
+            name: user.name }
+        }
+        setBlogs(blogs.concat(changedReturnedBlog))
         setNewTitle('')
         setNewAuthor('')
         setNewUrl('')
@@ -108,6 +114,29 @@ function App() {
           console.log('Error: ', error)
           setErrorMessage(null)
         }, 5000)
+      })
+  }
+
+  // Update blog likes, change response's user to match blogs state
+  const updateBlogLikes = (searchId) => {
+    const blogToUpdate = blogs.find(({ id }) => id === searchId)
+    const newLikes = blogToUpdate.likes + 1
+    const changedBlog = { ...blogToUpdate, likes: newLikes }
+
+    blogService
+      .update(blogToUpdate.id, changedBlog)
+      .then(response => {
+        const changedResponse = {
+          ...response, user: {
+            id: blogToUpdate.user.id,
+            username: blogToUpdate.user.username,
+            name: blogToUpdate.user.name }
+        }
+        setBlogs(blogs.map(blog => blog.id !== blogToUpdate.id ? blog : changedResponse))
+      })
+      .catch(error => {
+        setBlogs(blogs.filter(p => p.id !== blogToUpdate.id))
+        console.log('error', error)
       })
   }
 
@@ -162,6 +191,7 @@ function App() {
 
       <Blogs
         blogs={blogs}
+        updateBlogLikes={updateBlogLikes}
       />
 
     </div>
