@@ -140,6 +140,30 @@ function App() {
       })
   }
 
+  // Deleting the blog
+  const deleteBlog = (id, title, author) => {
+  // console.log('Attr', id, name)
+    if (window.confirm(`Do you really want to delete blog ${title}? by ${author}`)) {
+      blogService
+        .deleteThis(id)
+        .then(returnedData => {
+          console.log('Delete status response', returnedData)
+        })
+        .catch(error => {
+          alert(`the blog '${title}' was already deleted from server`)
+          console.log('error', error)
+        })
+      let copy = blogs.filter(blog => blog.id !== id)
+      setBlogs(copy)
+      setMessage(
+        `Blog '${title}' was removed`
+      )
+      setTimeout(() => {
+        setMessage(null)
+      }, 5000)
+    }
+  }
+
   // Conditional rendering
   if (user === null) {
     return (
@@ -192,12 +216,11 @@ function App() {
       <Blogs
         blogs={blogs}
         updateBlogLikes={updateBlogLikes}
+        deleteBlog={deleteBlog}
       />
 
     </div>
   )
-
-
 }
 
 export default App

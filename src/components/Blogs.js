@@ -1,7 +1,7 @@
 import React from 'react' // eslint-disable-line no-unused-vars
 import Blog from './Blog' // eslint-disable-line no-unused-vars
 
-const Blogs = ({ blogs, updateBlogLikes }) => {
+const Blogs = ({ blogs, updateBlogLikes, deleteBlog }) => {
   if (blogs.length === null) {
     return <div>Loading...</div>
   }
@@ -19,7 +19,7 @@ const Blogs = ({ blogs, updateBlogLikes }) => {
           name={blog.user.name}
           updateBlogLikes={updateBlogLikes}
           id={blog.id}
-          blogs={blogs}
+          deleteBlog={deleteBlog}
         /><br />
       </React.Fragment>
     )
