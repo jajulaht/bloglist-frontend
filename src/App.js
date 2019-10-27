@@ -9,7 +9,7 @@ import BlogForm from './components/BlogForm' // eslint-disable-line no-unused-va
 import Togglable from './components/Togglable' // eslint-disable-line no-unused-vars
 
 
-function App() {
+const App = () => {
   const [blogs, setBlogs] = useState([])
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -217,6 +217,7 @@ function App() {
         blogs={blogs}
         updateBlogLikes={updateBlogLikes}
         deleteBlog={deleteBlog}
+        user={user}
       />
 
     </div>
