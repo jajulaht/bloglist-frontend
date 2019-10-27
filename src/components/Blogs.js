@@ -6,8 +6,10 @@ const Blogs = ({ blogs, updateBlogLikes }) => {
     return <div>Loading...</div>
   }
   else {
+    // Arrange blogs by likes in descending order
+    const arrangedBlogs = blogs.sort((a, b) => (a.likes < b.likes) ? 1 : -1)
     // Map blogs array data to rows
-    const rows = () => blogs.map(blog =>
+    const rows = () => arrangedBlogs.map(blog =>
       <React.Fragment key={blog.id}>
         <Blog
           title={blog.title}
