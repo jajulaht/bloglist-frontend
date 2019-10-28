@@ -25,6 +25,7 @@ const App = () => {
   const [newUrl, setNewUrl] = useState(
     ''
   )
+  const blogFormRef = React.createRef()
 
   // Get blogs from db
   useEffect(() => {
@@ -79,6 +80,7 @@ const App = () => {
   // Add a blog, change response's user to match blogs state
   const addBlog = (event) => {
     event.preventDefault()
+    blogFormRef.current.toggleVisibility()
     const blogObject = {
       title: newTitle,
       author: newAuthor,
@@ -201,7 +203,7 @@ const App = () => {
 
       <p>{user.name} logged in <button onClick={handleLogout}>Logout</button></p>
 
-      <Togglable buttonLabel="New blog note">
+      <Togglable buttonLabel="New blog note" ref={blogFormRef}>
         <BlogForm
           addBlog={addBlog}
           newTitle={newTitle}
