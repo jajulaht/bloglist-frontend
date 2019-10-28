@@ -36,7 +36,7 @@ const Blog = ({ title, author, url, likes, name, updateBlogLikes, id, deleteBlog
   }, [user, username, name])
 
   return (
-    <div>
+    <div className='blog'>
       <div style={blogTitleStyle} onClick={() => setVisible(!visible)}>{title} {author}</div>
       <div style={blogStyle}>{url}<br />
         {likes} likes <button onClick={() => updateBlogLikes(id)}>Like</button><br />
