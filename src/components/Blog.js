@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react' // eslint-disable-line no-unused-vars
+import React, { useState, useEffect } from 'react'
 
 const Blog = ({ title, author, url, likes, name, updateBlogLikes, id, deleteBlog, user, username }) => {
   const [visible, setVisible] = useState(false)

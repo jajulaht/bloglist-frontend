@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react' // eslint-disable-line no-unused-vars
-import blogService from './services/blogs' // eslint-disable-line no-unused-vars
-import Notification from './components/Notification' // eslint-disable-line no-unused-vars
-import ErrorMessage from './components/ErrorMessage' // eslint-disable-line no-unused-vars
-import Blogs from './components/Blogs' // eslint-disable-line no-unused-vars
-import loginService from './services/login' // eslint-disable-line no-unused-vars
-import LoginForm from './components/LoginForm' // eslint-disable-line no-unused-vars
-import BlogForm from './components/BlogForm' // eslint-disable-line no-unused-vars
-import Togglable from './components/Togglable' // eslint-disable-line no-unused-vars
+import React, { useState, useEffect } from 'react'
+import blogService from './services/blogs'
+import Notification from './components/Notification'
+import ErrorMessage from './components/ErrorMessage'
+import Blogs from './components/Blogs'
+import loginService from './services/login'
+import LoginForm from './components/LoginForm'
+import BlogForm from './components/BlogForm'
+import Togglable from './components/Togglable'
 
 
 const App = () => {

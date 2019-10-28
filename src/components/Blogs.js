@@ -1,5 +1,5 @@
-import React from 'react' // eslint-disable-line no-unused-vars
-import Blog from './Blog' // eslint-disable-line no-unused-vars
+import React from 'react'
+import Blog from './Blog'
 
 const Blogs = ({ blogs, updateBlogLikes, deleteBlog, user }) => {
   if (blogs.length === null) {

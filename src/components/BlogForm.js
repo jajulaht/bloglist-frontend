@@ -1,6 +1,15 @@
-import React from 'react' // eslint-disable-line no-unused-vars
+import React from 'react'
+import PropTypes from 'prop-types'
 
-const BlogForm = ({ addBlog, newTitle, newAuthor, newUrl, setNewTitle, setNewAuthor, setNewUrl }) => {
+const BlogForm = ({
+  addBlog,
+  newTitle,
+  newAuthor,
+  newUrl,
+  setNewTitle,
+  setNewAuthor,
+  setNewUrl
+}) => {
   return (
     <form onSubmit={addBlog}>
       <h3>Create New</h3>
@@ -34,6 +43,16 @@ const BlogForm = ({ addBlog, newTitle, newAuthor, newUrl, setNewTitle, setNewAut
       <button type="submit">Create</button>
     </form>
   )
+}
+
+BlogForm.propTypes = {
+  addBlog: PropTypes.func.isRequired,
+  newTitle: PropTypes.string.isRequired,
+  newAuthor: PropTypes.string.isRequired,
+  newUrl: PropTypes.string.isRequired,
+  setNewTitle: PropTypes.func.isRequired,
+  setNewAuthor: PropTypes.func.isRequired,
+  setNewUrl: PropTypes.func.isRequired
 }
 
 export default BlogForm
