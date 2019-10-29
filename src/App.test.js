@@ -25,5 +25,8 @@ describe('<App />', () => {
     expect(component.container).toHaveTextContent(
       'password'
     )
+    expect(component.container).not.toHaveTextContent(
+      'Blogs'
+    )
   })
 })
