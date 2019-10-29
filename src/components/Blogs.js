@@ -26,7 +26,7 @@ const Blogs = ({ blogs, updateBlogLikes, deleteBlog, user }) => {
       </React.Fragment>
     )
     return (
-      <div>
+      <div className='bloglist'>
         {rows()}
       </div>
     )

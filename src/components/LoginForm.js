@@ -9,7 +9,7 @@ const LoginForm = ({
   setPassword
 }) => {
   return (
-    <form onSubmit={handleLogin}>
+    <form className='loginform' onSubmit={handleLogin}>
       <div>
       username
         <input
