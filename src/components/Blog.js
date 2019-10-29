@@ -37,8 +37,8 @@ const Blog = ({ title, author, url, likes, name, updateBlogLikes, id, deleteBlog
 
   return (
     <div className='blog'>
-      <div style={blogTitleStyle} onClick={() => setVisible(!visible)}>{title} {author}</div>
-      <div style={blogStyle}>{url}<br />
+      <div className='head' style={blogTitleStyle} onClick={() => setVisible(!visible)}>{title} {author}</div>
+      <div className='info' style={blogStyle}>{url}<br />
         {likes} likes <button onClick={() => updateBlogLikes(id)}>Like</button><br />
         added by {name}<br />
         <button style={delButton} onClick={() => deleteBlog(id, title, author)}>Remove</button>
