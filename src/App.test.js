@@ -15,6 +15,7 @@ describe('<App />', () => {
     await waitForElement(
       () => component.getByText('login')
     )
+    // console.log('eka', component.getByText('login'))
     // expectations here
     expect(component.container).toHaveTextContent(
       'Log in to application'
@@ -27,6 +28,42 @@ describe('<App />', () => {
     )
     expect(component.container).not.toHaveTextContent(
       'Blogs'
+    )
+  })
+
+  test('if user is logged, blogs are rendered', async () => {
+    const user = {
+      username: 'tester',
+      token: '1231231214',
+      name: 'Donald Tester'
+    }
+
+    localStorage.setItem('loggedBlogAppUser', JSON.stringify(user))
+
+    const component = render(
+      <App />
+    )
+    component.rerender(<App />)
+
+    await waitForElement(
+      () => component.container.querySelector('.main')
+    )
+    console.log('user', localStorage.getItem('loggedBlogappUser'))
+    // expectations here
+    // expect(component.container).toHaveTextContent(
+    //   'Log in to application'
+    // )
+    const blogs = component.container.querySelectorAll('.blog')
+    expect(blogs.length).toBe(8)
+
+    expect(component.container).toHaveTextContent(
+      'Second class tests, version 1.0'
+    )
+    expect(component.container).toHaveTextContent(
+      'Bloogi bloo 2'
+    )
+    expect(component.container).toHaveTextContent(
+      'Uuusi blogii'
     )
   })
 })

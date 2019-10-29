@@ -37,7 +37,6 @@ const App = () => {
 
   // Check if log info saved in local storage
   useEffect(() => {
-    // eslint-disable-next-line no-undef
     const loggedUserJSON = window.localStorage.getItem('loggedBlogappUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
@@ -169,7 +168,7 @@ const App = () => {
   // Conditional rendering
   if (user === null) {
     return (
-      <div>
+      <div className='main'>
 
         <h2>Log in to application</h2>
 
@@ -192,7 +191,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div className='main'>
       <h2>Blogs</h2>
       <Notification
         message={message}
