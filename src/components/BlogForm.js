@@ -5,10 +5,7 @@ const BlogForm = ({
   addBlog,
   newTitle,
   newAuthor,
-  newUrl,
-  setNewTitle,
-  setNewAuthor,
-  setNewUrl
+  newUrl
 }) => {
   return (
     <form onSubmit={addBlog}>
@@ -16,28 +13,19 @@ const BlogForm = ({
       <div>
       Title:
         <input
-          type="text"
-          value={newTitle}
-          name="title"
-          onChange={({ target }) => setNewTitle(target.value)}
+          {...newTitle}
         />
       </div>
       <div>
       Author:
         <input
-          type="text"
-          value={newAuthor}
-          name="author"
-          onChange={({ target }) => setNewAuthor(target.value)}
+          {...newAuthor}
         />
       </div>
       <div>
       Url:
         <input
-          type="text"
-          value={newUrl}
-          name="url"
-          onChange={({ target }) => setNewUrl(target.value)}
+          {...newUrl}
         />
       </div>
       <button type="submit">Create</button>
@@ -47,12 +35,9 @@ const BlogForm = ({
 
 BlogForm.propTypes = {
   addBlog: PropTypes.func.isRequired,
-  newTitle: PropTypes.string.isRequired,
-  newAuthor: PropTypes.string.isRequired,
-  newUrl: PropTypes.string.isRequired,
-  setNewTitle: PropTypes.func.isRequired,
-  setNewAuthor: PropTypes.func.isRequired,
-  setNewUrl: PropTypes.func.isRequired
+  newTitle: PropTypes.object.isRequired,
+  newAuthor: PropTypes.object.isRequired,
+  newUrl: PropTypes.object.isRequired
 }
 
 export default BlogForm

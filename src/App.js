@@ -19,15 +19,18 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState(null)
   const [message, setMessage] = useState(null)
   const [user, setUser] = useState(null)
-  const [newTitle, setNewTitle] = useState(
-    ''
-  )
-  const [newAuthor, setNewAuthor] = useState(
-    ''
-  )
-  const [newUrl, setNewUrl] = useState(
-    ''
-  )
+  const newTitle = useField('text')
+  const newAuthor = useField('text')
+  const newUrl = useField('text')
+  // const [newTitle, setNewTitle] = useState(
+  //   ''
+  // )
+  // const [newAuthor, setNewAuthor] = useState(
+  //   ''
+  // )
+  // const [newUrl, setNewUrl] = useState(
+  //   ''
+  // )
   const blogFormRef = React.createRef()
 
   // Get blogs from db
@@ -84,9 +87,9 @@ const App = () => {
     event.preventDefault()
     blogFormRef.current.toggleVisibility()
     const blogObject = {
-      title: newTitle,
-      author: newAuthor,
-      url: newUrl
+      title: newTitle.value,
+      author: newAuthor.value,
+      url: newUrl.value
     }
     blogService
       .create(blogObject)
@@ -98,9 +101,9 @@ const App = () => {
             name: user.name }
         }
         setBlogs(blogs.concat(changedReturnedBlog))
-        setNewTitle('')
-        setNewAuthor('')
-        setNewUrl('')
+        newTitle.reset()
+        newAuthor.reset()
+        newUrl.reset()
         setMessage(
           `'${returnedBlog.title}' was added`
         )
@@ -209,9 +212,6 @@ const App = () => {
           newTitle={newTitle}
           newAuthor={newAuthor}
           newUrl={newUrl}
-          setNewTitle={setNewTitle}
-          setNewAuthor={setNewAuthor}
-          setNewUrl={setNewUrl}
         />
       </Togglable>
 
