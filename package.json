@@ -35,6 +35,12 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.0",
     "@testing-library/react": "^9.3.0",
-    "eslint-plugin-jest": "^23.0.0"
+    "eslint-plugin-jest": "^23.0.0",
+    "eslint-plugin-react-hooks": "^2.2.0"
+  },
+  "plugins": [
+    "react-hooks"  ],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error"
   }
 }
