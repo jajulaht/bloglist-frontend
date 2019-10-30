@@ -38,7 +38,7 @@ describe('<App />', () => {
       name: 'Donald Tester'
     }
 
-    localStorage.setItem('loggedBlogAppUser', JSON.stringify(user))
+    localStorage.setItem('loggedBlogappUser', JSON.stringify(user))
 
     const component = render(
       <App />
@@ -48,11 +48,7 @@ describe('<App />', () => {
     await waitForElement(
       () => component.container.querySelector('.main')
     )
-    console.log('user', localStorage.getItem('loggedBlogappUser'))
-    // expectations here
-    // expect(component.container).toHaveTextContent(
-    //   'Log in to application'
-    // )
+
     const blogs = component.container.querySelectorAll('.blog')
     expect(blogs.length).toBe(8)
 

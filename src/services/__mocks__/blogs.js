@@ -100,4 +100,10 @@ const getAll = () => {
   return Promise.resolve(blogs)
 }
 
-export default { getAll }
+const setToken = newToken => {
+  jest.fn()
+  console.log(newToken)
+  //token = `bearer ${newToken}`
+}
+
+export default { getAll, setToken }
