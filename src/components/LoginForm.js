@@ -10,11 +10,11 @@ const LoginForm = ({
     <form className='loginform' onSubmit={handleLogin}>
       <div>
       username
-        <input {...username} />
+        <input {...username.omitreset} />
       </div>
       <div>
         password
-        <input {...password} />
+        <input {...password.omitreset} />
       </div>
       <button type="submit">login</button>
     </form>

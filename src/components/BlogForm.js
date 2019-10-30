@@ -13,19 +13,19 @@ const BlogForm = ({
       <div>
       Title:
         <input
-          {...newTitle}
+          {...newTitle.omitreset}
         />
       </div>
       <div>
       Author:
         <input
-          {...newAuthor}
+          {...newAuthor.omitreset}
         />
       </div>
       <div>
       Url:
         <input
-          {...newUrl}
+          {...newUrl.omitreset}
         />
       </div>
       <button type="submit">Create</button>
