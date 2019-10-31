@@ -12,9 +12,7 @@ import  { useField } from './hooks'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
-  //const [username, setUsername] = useState('')
   const username = useField('text')
-  //const [password, setPassword] = useState('')
   const password = useField('password')
   const [errorMessage, setErrorMessage] = useState(null)
   const [message, setMessage] = useState(null)
@@ -22,15 +20,6 @@ const App = () => {
   const newTitle = useField('text')
   const newAuthor = useField('text')
   const newUrl = useField('text')
-  // const [newTitle, setNewTitle] = useState(
-  //   ''
-  // )
-  // const [newAuthor, setNewAuthor] = useState(
-  //   ''
-  // )
-  // const [newUrl, setNewUrl] = useState(
-  //   ''
-  // )
   const blogFormRef = React.createRef()
 
   // Get blogs from db
